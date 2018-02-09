@@ -1,6 +1,7 @@
+package lambda;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class ExampleLambda {
 	
@@ -8,25 +9,25 @@ public class ExampleLambda {
 		new ExampleLambda().test();
 	}
 	
-	void test() {
+	private void test() {
 		List<AccSec> data = this.genData();
-		data.stream().forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
+		data.forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
 		System.out.println("---------------------");
 		this.calculate(data);
 		System.out.println("\n\n");
 		List<AccSec> data2 = this.genData2();
-		data2.stream().forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
+		data2.forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
 		System.out.println("---------------------");
 		this.calculate(data2);
 		System.out.println("\n\n");
 		List<AccSec> data3 = this.genData3();
-		data3.stream().forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
+		data3.forEach(d -> System.out.println("** " + d.getLockout() + ", " + d.getPassExpired()));
 		System.out.println("---------------------");
 		this.calculate(data3);
 		
 	}
 	
-	void calculate(List<AccSec> data) {
+	private void calculate(List<AccSec> data) {
 		AccSec mergedProfile = new AccSec();
 		
 		int lockoutSum = data.stream().mapToInt(AccSec::getLockout).sum();
@@ -39,7 +40,7 @@ public class ExampleLambda {
 		System.out.println(">> " + mergedProfile.getLockout() + ", " + mergedProfile.getPassExpired());
 	}
 	
-	List<AccSec> genData() {
+	private List<AccSec> genData() {
 		AccSec as00 = new AccSec();
 		as00.setLockout(0);
 		as00.setPassExpired(0);
@@ -54,7 +55,7 @@ public class ExampleLambda {
 		return result;
 	}
 	
-	List<AccSec> genData2() {
+	private List<AccSec> genData2() {
 		AccSec as00 = new AccSec();
 		as00.setLockout(0);
 		as00.setPassExpired(8);
@@ -69,7 +70,7 @@ public class ExampleLambda {
 		return result;
 	}
 	
-	List<AccSec> genData3() {
+	private List<AccSec> genData3() {
 		AccSec as00 = new AccSec();
 		as00.setLockout(9);
 		as00.setPassExpired(0);
@@ -88,19 +89,19 @@ public class ExampleLambda {
 		int lockout;
 		int passExpired;
 		
-		public int getLockout() {
+		int getLockout() {
 			return lockout;
 		}
 		
-		public void setLockout(int lockout) {
+		void setLockout(int lockout) {
 			this.lockout = lockout;
 		}
 		
-		public int getPassExpired() {
+		int getPassExpired() {
 			return passExpired;
 		}
 		
-		public void setPassExpired(int passExpired) {
+		void setPassExpired(int passExpired) {
 			this.passExpired = passExpired;
 		}
 	}
